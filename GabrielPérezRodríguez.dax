@@ -1,0 +1,108 @@
+﻿DEFINE 
+---- MODEL MEASURES BEGIN ----
+MEASURE 'DAX Medidas'[Ingreso medio clientes] = AVERAGE(DimClientes[Income])
+MEASURE 'DAX Medidas'[TasaConversión] = 
+DIVIDE([Total Compras Web], [Total visitas WebUltimoMes], 0)
+
+MEASURE 'DAX Medidas'[Total Aceptacion campañas] = 
+SUMX(
+    SUMMARIZE(
+        'DimNumCampanha',
+        'DimCampañas'[Campaña],
+        "TotalCampañas", SUM(DimNumCampanha[Valor])
+    ),
+    [TotalCampañas]
+)
+MEASURE 'DAX Medidas'[Total Aceptacion Cmp1] = CALCULATE(
+    SUM(DimNumCampanha[Valor]),
+    'DimCampañas'[Campaña] = "AcceptedCmp1"
+)
+MEASURE 'DAX Medidas'[Total Aceptacion Cmp2] = CALCULATE(
+    SUM(DimNumCampanha[Valor]),
+    'DimCampañas'[Campaña] = "AcceptedCmp2"
+)
+MEASURE 'DAX Medidas'[Total Aceptacion Cmp3] = CALCULATE(
+    SUM(DimNumCampanha[Valor]),
+    'DimCampañas'[Campaña] = "AcceptedCmp3"
+)
+MEASURE 'DAX Medidas'[Total Aceptacion Cmp4] = CALCULATE(
+    SUM(DimNumCampanha[Valor]),
+    'DimCampañas'[Campaña] = "AcceptedCmp4"
+)
+MEASURE 'DAX Medidas'[Total Aceptacion Cmp5] = CALCULATE(
+    SUM(DimNumCampanha[Valor]),
+    'DimCampañas'[Campaña] = "AcceptedCmp5"
+)
+MEASURE 'DAX Medidas'[Total Aceptacion Cmp6] = CALCULATE(
+    SUM(DimNumCampanha[Valor]),
+    'DimCampañas'[Campaña] = "AcceptedLastCmp"
+)
+MEASURE 'DAX Medidas'[Total clientes] = DISTINCTCOUNT(DimClientes[ID])
+MEASURE 'DAX Medidas'[Total compras] = 
+SUMX(
+    SUMMARIZE(
+        DimNumProductos,
+        DimProductos[Atributo],
+        "TotalPorCategoria", SUM(DimNumProductos[Valor])
+    ),
+    [TotalPorCategoria]
+)
+
+MEASURE 'DAX Medidas'[Total compras Carne] = CALCULATE(
+    SUM(DimNumProductos[Valor]),
+    'DimProductos'[Atributo] = "MntMeatProducts"
+)
+MEASURE 'DAX Medidas'[Total compras Catalogo] = CALCULATE(
+    SUM(DimNumCompras[Valor]),
+    'DimCompras'[Atributo] = "NumCatalogPurchases"
+)
+MEASURE 'DAX Medidas'[Total compras Descuento] = CALCULATE(
+    SUM(DimNumCompras[Valor]),
+    'DimCompras'[Atributo] = "NumDealsPurchases"
+)
+MEASURE 'DAX Medidas'[Total compras Dulce] = CALCULATE(
+    SUM(DimNumProductos[Valor]),
+    'DimProductos'[Atributo] = "MntSweetProducts"
+)
+MEASURE 'DAX Medidas'[Total compras Frutas] = CALCULATE(
+    SUM(DimNumProductos[Valor]),
+    'DimProductos'[Atributo] = "MntFruits"
+)
+MEASURE 'DAX Medidas'[Total compras Gold] = CALCULATE(
+    SUM(DimNumProductos[Valor]),
+    'DimProductos'[Atributo] = "MntGoldProds"
+)
+
+MEASURE 'DAX Medidas'[Total compras Pescado] = CALCULATE(
+    SUM(DimNumProductos[Valor]),
+    'DimProductos'[Atributo] = "MntFishProducts"
+)
+MEASURE 'DAX Medidas'[Total compras Tienda] = CALCULATE(
+    SUM(DimNumCompras[Valor]),
+    'DimCompras'[Atributo] = "NumStorePurchases"
+)
+MEASURE 'DAX Medidas'[Total compras Vinos] = CALCULATE(
+    SUM(DimNumProductos[Valor]),
+    'DimProductos'[Atributo] = "MntWines"
+)
+
+MEASURE 'DAX Medidas'[Total compras Web] = CALCULATE(
+    SUM(DimNumCompras[Valor]),
+    'DimCompras'[Atributo] = "NumWebPurchases"
+)
+MEASURE 'DAX Medidas'[Total No Aceptacion Campañas] = 
+SUMX(
+    SUMMARIZE(
+        DimNumCampanha,
+        'DimCampañas'[Campaña],
+        "TotalNoAceptadas", COUNTROWS(FILTER(DimNumCampanha, DimNumCampanha[Valor] = 0))
+    ),
+    [TotalNoAceptadas]
+)
+
+MEASURE 'DAX Medidas'[Total visitas WebUltimoMes] = CALCULATE(
+    SUM(DimNumCompras[Valor]),
+    'DimCompras'[Atributo] = "NumWebVisitsMonth"
+)
+---- MODEL MEASURES END ----
+
