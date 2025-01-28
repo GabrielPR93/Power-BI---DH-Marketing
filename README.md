@@ -5,8 +5,10 @@
  necesita generar valor a través de estos datos y te pide hacer un análisis. El análisis
  debe basarse en los diferentes factores que podemos medir del dataset. La empresa
  requiere que como mínimo organices los datos por fechas, campañas, productos, etc.
+ 
 
-- Extracción de datos. 
+- Extracción de datos.
+  
 - Transformaciones de datos:
   - Limpieza y transformación de datos.
   - Cambios de nombre en las columnas.
@@ -14,23 +16,29 @@
   - Combinación y tratamiento de columnas.
   - Creación de tablas de dimensiones. (Ejem: estado civil y educación)
   - Combinación de tablas.
+    
 - Carga de datos en el modelo.
+  
 - Implementar el modelo de estrella.
+  
 - Algunas métricas de DAX calculadas:
   - Total de clientes.
   - Ingreso medio de los clientes.
   - Totales de compras por producto.
   - Totales por campañas.
   - Tabla calendario.
+    
 - Visualizaciones:
   - Gráficos de líneas.
   - Gráficos de barras.
   - Gráficos de anillos.
   - Tablas.
   - Matrices.
+    
 - Paneles de filtro.
+  
 - Marcadores y botones de navegación.
-- 
+  
 >Fuente de la base de datos
  - https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign?resource=download
 
